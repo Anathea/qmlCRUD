@@ -16,6 +16,4 @@ DISTFILES += \
     qml/temp.js \
     qml/MonConteneur.qml \
     qml/EditLine.qml \
-    qml/ordreComposant.qml \
-    qml/RectTemp.qml \
     qml/MonDelegate.qml
