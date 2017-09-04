@@ -6,6 +6,7 @@ release/*
 Makefile
 Makefile.*
 moc_*
+qmlCRUD
 
 # Prerequisites
 *.d
