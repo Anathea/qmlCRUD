@@ -5,6 +5,7 @@ release/*
 .qmake.stash
 Makefile
 Makefile.*
+*.qmlc
 moc_*
 qmlCRUD
 
