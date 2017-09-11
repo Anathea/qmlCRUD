@@ -43,9 +43,32 @@ Rectangle {
             height : 400
             model : UnModelARenseigner
             delegate : MonDelegate {
-                property string lesDonnees : modelData
-                onLesDonneesChanged : {
-                    console.log(lesDonnees.split(";"));
+                Item {
+                    property string lesDonnees : modelData
+                    id : root
+                    height : 40
+                    width : 400 // à supprimer
+
+                    Rectangle {
+
+                        Row {
+                            spacing : 2
+                            width : 400
+                            height : 40
+
+                            Rect_A {
+                                text : lesDonnees.split(";")[0]
+                            }
+
+                            Rect_A {
+                                text : lesDonnees.split(";")[1]
+                            }
+
+                            Rect_A {
+                                text : lesDonnees.split(";")[2]
+                            }
+                        }
+                    }
                 }
             }
         }
