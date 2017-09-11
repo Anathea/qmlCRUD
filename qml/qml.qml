@@ -12,7 +12,7 @@ Rectangle {
         spacing : 2
 
         EditLine {
-
+            id : idEditLine
         }
 
         Row {

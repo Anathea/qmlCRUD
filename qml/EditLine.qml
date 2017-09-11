@@ -2,8 +2,6 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4 //TextFields
 
 Item {
-    id : idEditLine
-
     property alias champNom : idNom.text
     property alias champPrenom : idPrenom.text
     property alias champAge: idAge.text
