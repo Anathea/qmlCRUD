@@ -9,6 +9,7 @@ Makefile.*
 qml/*.qmlc
 moc_*
 qmlCRUD
+QML_CRUD.pdf
 
 
 
