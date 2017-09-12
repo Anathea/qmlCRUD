@@ -6,9 +6,13 @@ Item {
 //    property string textPrenom : ""
 //    property string textAge: ""
 
-    property string champNom : idNom.text
-    property string champPrenom : ""
-    property string champAge: ""
+    property alias champNom : idNom.text
+    property alias champPrenom : idPrenom.text
+    property alias champAge: idAge.text
+
+//    property string champNom : "" // idNom.text
+//    property string champPrenom : "" // idPrenom.text
+//    property string champAge : "" // idAge.text
 
     height : 60
     width : 400 // à commenter temporairement
@@ -21,35 +25,15 @@ Item {
 
             RectField_A {
                 id : idNom
-                onTextChanged : {
-                    var regex = /;/g;
-                    var str = idNom.text;
-                    str = str.replace(regex, "");
-                    champNom = str;
-                    idNom.text = str;
-                }
             }
 
             RectField_A {
                 id : idPrenom
-                onTextChanged : {
-                    var regex = /;/g;
-                    var str = idPrenom.text;
-                    str = str.replace(regex, "");
-                    champPrenom = str;
-                    idPrenom.text = str;
-                }
             }
 
             RectField_A {
                 id : idAge
-                onTextChanged : {
-                    var regex = /\D/g;
-                    var str = idAge.text;
-                    str = str.replace(regex, "");
-                    champAge = str;
-                    idAge.text = str;
-                }
+                nameTextF.validator: IntValidator {bottom: 0; top: 200;}
             }
         }
     }

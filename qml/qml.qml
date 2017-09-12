@@ -3,7 +3,6 @@ import QtQuick.Controls 1.4
 
 Rectangle {
     property alias idListView: idListView
-    property alias clicIndex: idListView.currentIndex
 
     width : 400
     height : 400
@@ -24,32 +23,34 @@ Rectangle {
             Button {
                 text : "Ajouter"
                 onClicked : {
-                    //                    if ((idEditLine.champNom && idEditLine.champPrenom && idEditLine.champAge) // champs non nuls
-                    //                            && (idEditLine.champNom !== idEditLine.champPrenom)) // Nom != Prénom
-                    //                    {
-                    Context.sendActionToCpp("ajouterLigne", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge);
-//                    idEditLine.champNom = "";
-//                    idEditLine.champPrenom = "";
-//                    idEditLine.champAge = "";
-                    //                    }
+                    if ((idEditLine.champNom && idEditLine.champPrenom && idEditLine.champAge) // champs non nuls
+                            && (idEditLine.champNom !== idEditLine.champPrenom)) // Nom != Prénom
+                    {
+                        Context.sendActionToCpp("ajouterLigne", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge);
+                    }
                 }
             }
 
             Button {
                 text : "Modifier"
                 onClicked : {
-//                    idEditLine.champNom =
+                    Context.sendActionToCpp("modifier", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge, idListView.clicIndex);
                 }
             }
 
             Button {
                 text : "Supprimer"
-                onClicked : console.log("supprimer")
+                onClicked : {
+                    Context.sendActionToCpp("supprimer", "", idListView.clicIndex);
+                }
             }
         }
 
         ListView {
             id : idListView
+
+            property alias clicIndex: idListView.currentIndex
+
             y : 200
 
             width : 400
@@ -57,7 +58,9 @@ Rectangle {
             model : UnModelARenseigner
             delegate : MonDelegate {
                 property string lesDonnees : modelData
+
                 onLesDonneesChanged : {
+                                    console.log("modelData = " + modelData);
                     var t = lesDonnees.split(";")
                     champNom = t[0];
                     champPrenom = t[1];
@@ -71,9 +74,6 @@ Rectangle {
                         console.log(idListView.currentIndex);
                         idListView.currentIndex = index;
                         console.log(idListView.currentIndex);
-
-                        idEditLine.champNom = idListView.currentItem.champNom;
-                        console.log(idListView.currentItem.champNom);
                     }
                 }
             }

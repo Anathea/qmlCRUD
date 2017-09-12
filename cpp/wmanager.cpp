@@ -51,8 +51,8 @@ void WManager::makeQMLtab(QString nomFichierQMLsansExtension)
     updateQML_model("UnModelARenseigner", listeVide);
     //
 
-    QString repertoireProjet = getRepertoireProjet(); // Pour Windows
-//    QString repertoireProjet = "/home/anathea/Programmation/qmlCRUD"; // Pour Linux
+//    QString repertoireProjet = getRepertoireProjet(); // Pour Windows
+    QString repertoireProjet = "/home/anathea/Programmation/WIP/qmlCRUD-master"; // Pour Linux
     QString fichierQML = repertoireProjet + QString("/qml/") + nomFichierQMLsansExtension + QString(".qml");
     std::cout  << "charge le fichier QML : " << fichierQML.toLatin1().constData() << std::endl;
 
@@ -113,7 +113,12 @@ void WManager::sendActionToCpp(QString nomAction, QString parametre/*=""*/, int 
     }
     else if (nomAction == "modifier")
     {
+        m_aOfTablo.erase(m_aOfTablo.begin() + index);
         m_aOfTablo.insert(index, parametre);
+    }
+    else if (nomAction == "supprimer")
+    {
+        m_aOfTablo.erase(m_aOfTablo.begin() + index);
     }
     updateQML_model("UnModelARenseigner", m_aOfTablo);
 }
