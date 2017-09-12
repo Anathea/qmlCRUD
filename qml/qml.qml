@@ -2,6 +2,9 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 
 Rectangle {
+    property alias idListView: idListView
+    property alias clicIndex: idListView.currentIndex
+
     width : 400
     height : 400
     color : "lavender"
@@ -21,13 +24,22 @@ Rectangle {
             Button {
                 text : "Ajouter"
                 onClicked : {
-                    Context.sendActionToCpp("ajouterLigne", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge)
+                    //                    if ((idEditLine.champNom && idEditLine.champPrenom && idEditLine.champAge) // champs non nuls
+                    //                            && (idEditLine.champNom !== idEditLine.champPrenom)) // Nom != Prénom
+                    //                    {
+                    Context.sendActionToCpp("ajouterLigne", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge);
+//                    idEditLine.champNom = "";
+//                    idEditLine.champPrenom = "";
+//                    idEditLine.champAge = "";
+                    //                    }
                 }
             }
 
             Button {
                 text : "Modifier"
-                onClicked : console.log("modifier")
+                onClicked : {
+//                    idEditLine.champNom =
+                }
             }
 
             Button {
@@ -37,6 +49,7 @@ Rectangle {
         }
 
         ListView {
+            id : idListView
             y : 200
 
             width : 400
@@ -45,21 +58,32 @@ Rectangle {
             delegate : MonDelegate {
                 property string lesDonnees : modelData
                 onLesDonneesChanged : {
-                    console.log(lesDonnees.split(";"));
                     var t = lesDonnees.split(";")
                     champNom = t[0];
                     champPrenom = t[1];
                     champAge = t[2];
+
+                    console.log("modelData = " + modelData);
                 }
+                MouseArea {
+                    anchors.fill : parent
+                    onClicked : {
+                        console.log(idListView.currentIndex);
+                        idListView.currentIndex = index;
+                        console.log(idListView.currentIndex);
+
+                        idEditLine.champNom = idListView.currentItem.champNom;
+                        console.log(idListView.currentItem.champNom);
+                    }
+                }
+            }
+            highlight : Rectangle {
+                z : 2
+                width : 120
+                height : 20
+                color : "#0000ff"
+                opacity : 0.1
             }
         }
     }
-
-    //        color : "papayawhip"
-    //        border{width : 1; color : "papayawhip"}
-//    var regex = /\S+/g; // \S pour les non-espaces, + pour 1 ou plus, g pour toutes les occurences des \S
-//    var result = str.match(regex);
-//    if (result === null) {
-//        return [];
-//    }
 }

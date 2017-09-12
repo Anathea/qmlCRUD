@@ -102,7 +102,7 @@ void WManager::testActionQML(int i)
 }
 
 // Fonction appelée à partir du QML pour exécuter une action C++
-void WManager::sendActionToCpp(QString nomAction, QString parametre/*=""*/)
+void WManager::sendActionToCpp(QString nomAction, QString parametre/*=""*/, int index)
 {
     qDebug() << "WManager::sendActionfromQML : nomAction = " << nomAction;
     qDebug() << "WManager::sendActionfromQML : parametre = " << parametre;
@@ -111,9 +111,9 @@ void WManager::sendActionToCpp(QString nomAction, QString parametre/*=""*/)
     {
         m_aOfTablo.push_back(parametre);
     }
-    else if (nomAction == "autreAction")
+    else if (nomAction == "modifier")
     {
-        // Détail d'une autre action appelée à partir du C++
+        m_aOfTablo.insert(index, parametre);
     }
     updateQML_model("UnModelARenseigner", m_aOfTablo);
 }

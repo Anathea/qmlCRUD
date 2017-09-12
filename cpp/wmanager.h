@@ -42,7 +42,7 @@ public:
 
     // Mise à jour du modele de xxxxView du QML (du type Context.nomModele)
     void updateQML_model(QString nomModele, QStringList sl);
-    Q_INVOKABLE void sendActionToCpp(QString, QString parametre = QString(""));
+    Q_INVOKABLE void sendActionToCpp(QString, QString parametre = QString(""), int index = 0);
 
     //...........................................................................
     // Personnalisation pour ce projet
