@@ -6,16 +6,19 @@ Rectangle {
 
     width : 160
     height : parent.height
-    border { width : 2; color : "lightgrey"}
+    border {
+        width : 2
+        color : "lightgrey"
+    }
     color : "lightblue"
 
-    Text{
+    Text {
         text : root.text
-        x: 10
+        x : 10
         height : parent.height
         width : parent.width
 
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignLeft
+        verticalAlignment : Text.AlignVCenter
+        horizontalAlignment : Text.AlignLeft
     }
 }

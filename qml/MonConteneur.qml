@@ -7,13 +7,16 @@ Rectangle {
     height : parent.height
 
     // Le contenu intérieur dynamiquement mis à jour
-    onContenuChanged: {
+    onContenuChanged : {
         if (contenu.status == Component.Ready) {
             var cree = contenu.createObject(idContainer);
         }
     }
 
-    border { width : 2; color : "lightgrey"}
+    border {
+        width : 2
+        color : "lightgrey"
+    }
     color : "lightblue"
 
     Rectangle {

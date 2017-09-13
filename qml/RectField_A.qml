@@ -7,9 +7,13 @@ Rectangle {
 
     width : 160
     height : parent.height
-    border { width : 2; color : "lightgrey"}
+    border {
+        width : 2
+        color : "lightgrey"
+    }
     color : "lightblue"
-    y:6
+    y : 6
+
     TextField {
         id : idTextF
 
@@ -17,15 +21,15 @@ Rectangle {
         x : a
         y : a
 
-        height : parent.height - 2*a
-        width : parent.width - 2*a
+        height : parent.height - (2 * a)
+        width : parent.width - (2 * a)
 
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignLeft
+        verticalAlignment : Text.AlignVCenter
+        horizontalAlignment : Text.AlignLeft
 
         onTextChanged : {
             var regex = /;/g;
-            var str = idTextF.text;
+            var str = text;
             str = str.replace(regex, "");
             text = str;
         }

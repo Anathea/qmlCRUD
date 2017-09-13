@@ -9,7 +9,6 @@ using namespace std;
 
 WManager::WManager(QObject *parent) : QObject(parent)
 {
-    qDebug() << "WManager::instance construite ";
 
     // 1/2 Initialisation des valeurs pour le QML avant chargement du fichier
     // propriétés simples
@@ -25,7 +24,6 @@ void WManager::load()
     for (int t = 0; t < 1; t++)
     {
         makeQMLtab(fichiersQML[t]);
-        std::cout << "tab " << t << " ready." << std::endl;
     }
 }
 
@@ -51,8 +49,7 @@ void WManager::makeQMLtab(QString nomFichierQMLsansExtension)
     updateQML_model("UnModelARenseigner", listeVide);
     //
 
-    QString repertoireProjet = getRepertoireProjet(); // Pour Windows
-//    QString repertoireProjet = "/home/anathea/Programmation/WIP/qmlCRUD-master"; // Pour Linux
+    QString repertoireProjet = getRepertoireProjet();
     QString fichierQML = repertoireProjet + QString("/qml/") + nomFichierQMLsansExtension + QString(".qml");
     std::cout  << "charge le fichier QML : " << fichierQML.toLatin1().constData() << std::endl;
 
@@ -77,8 +74,6 @@ QString WManager::getRepertoireProjet(bool trace)//false
 
     fichier.cd(qApp->applicationName());
     QString repertoireProjet  = fichier.absolutePath();
-    if (trace)
-        std::cout  << "repertoireProjet : " << repertoireProjet.toLatin1().constData() << std::endl;
 
     return repertoireProjet;
 }
@@ -104,9 +99,6 @@ void WManager::testActionQML(int i)
 // Fonction appelée à partir du QML pour exécuter une action C++
 void WManager::sendActionToCpp(QString nomAction, QString parametre/*=""*/, int index)
 {
-    qDebug() << "WManager::sendActionfromQML : nomAction = " << nomAction;
-    qDebug() << "WManager::sendActionfromQML : parametre = " << parametre;
-
     if (nomAction == "ajouterLigne")
     {
         m_aOfTablo.push_back(parametre);

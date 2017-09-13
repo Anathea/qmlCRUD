@@ -58,7 +58,7 @@ Rectangle {
         ListView {
             id : idListView
 
-            property alias clicIndex: idListView.currentIndex
+            property alias clicIndex : idListView.currentIndex
 
             y : 200
 
@@ -87,8 +87,6 @@ Rectangle {
             }
             highlight : Rectangle {
                 z : 2
-                width : 3
-                height : 3
                 color : "#0000ff"
                 opacity : 0.1
             }
