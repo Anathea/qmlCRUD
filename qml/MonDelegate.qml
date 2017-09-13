@@ -3,31 +3,34 @@ import QtQuick.Controls 1.4 //TextFields
 
 
 Item {
-    property string champNom: ""
-    property string champPrenom: ""
-    property string champAge: ""
+    property alias champNomDelegate : idChampNomDelegate.text
+    property alias champPrenomDelegate : idChampPrenomDelegate.text
+    property alias champAgeDelegate : idChampAgeDelegate.text
 
     id : root
     height : 40
-    width : 400 // à supprimer
+    width : 485 // à supprimer
 
     Rectangle {
 
         Row {
             spacing : 2
-            width : 400
+            width : 485
             height : 40
 
             Rect_A {
-                text : root.champNom
+                id : idChampNomDelegate
+                text : "root.champNomDelegate"
             }
 
             Rect_A {
-                text : root.champPrenom
+                id : idChampPrenomDelegate
+                text : "root.champPrenomDelegate"
             }
 
             Rect_A {
-                text : root.champAge
+                id : idChampAgeDelegate
+                text : "root.champAgeDelegate"
             }
         }
     }

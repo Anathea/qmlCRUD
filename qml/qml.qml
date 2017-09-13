@@ -27,6 +27,9 @@ Rectangle {
                             && (idEditLine.champNom !== idEditLine.champPrenom)) // Nom != Prénom
                     {
                         Context.sendActionToCpp("ajouterLigne", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge);
+                        idEditLine.champNom = "";
+                        idEditLine.champPrenom = "";
+                        idEditLine.champAge = "";
                     }
                 }
             }
@@ -35,6 +38,9 @@ Rectangle {
                 text : "Modifier"
                 onClicked : {
                     Context.sendActionToCpp("modifier", idEditLine.champNom + ";" + idEditLine.champPrenom + ";" + idEditLine.champAge, idListView.clicIndex);
+                    idEditLine.champNom = "";
+                    idEditLine.champPrenom = "";
+                    idEditLine.champAge = "";
                 }
             }
 
@@ -42,6 +48,9 @@ Rectangle {
                 text : "Supprimer"
                 onClicked : {
                     Context.sendActionToCpp("supprimer", "", idListView.clicIndex);
+                    idEditLine.champNom = "";
+                    idEditLine.champPrenom = "";
+                    idEditLine.champAge = "";
                 }
             }
         }
@@ -60,27 +69,26 @@ Rectangle {
                 property string lesDonnees : modelData
 
                 onLesDonneesChanged : {
-                                    console.log("modelData = " + modelData);
-                    var t = lesDonnees.split(";")
-                    champNom = t[0];
-                    champPrenom = t[1];
-                    champAge = t[2];
-
-                    console.log("modelData = " + modelData);
+                    var tab = lesDonnees.split(";")
+                    champNomDelegate = tab[0];
+                    champPrenomDelegate = tab[1];
+                    champAgeDelegate = tab[2];
                 }
                 MouseArea {
                     anchors.fill : parent
                     onClicked : {
-                        console.log(idListView.currentIndex);
                         idListView.currentIndex = index;
-                        console.log(idListView.currentIndex);
+
+                        idEditLine.champNom = champNomDelegate;
+                        idEditLine.champPrenom = champPrenomDelegate;
+                        idEditLine.champAge = champAgeDelegate;
                     }
                 }
             }
             highlight : Rectangle {
                 z : 2
-                width : 120
-                height : 20
+                width : 3
+                height : 3
                 color : "#0000ff"
                 opacity : 0.1
             }

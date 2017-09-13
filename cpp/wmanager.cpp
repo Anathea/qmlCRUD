@@ -51,8 +51,8 @@ void WManager::makeQMLtab(QString nomFichierQMLsansExtension)
     updateQML_model("UnModelARenseigner", listeVide);
     //
 
-//    QString repertoireProjet = getRepertoireProjet(); // Pour Windows
-    QString repertoireProjet = "/home/anathea/Programmation/WIP/qmlCRUD-master"; // Pour Linux
+    QString repertoireProjet = getRepertoireProjet(); // Pour Windows
+//    QString repertoireProjet = "/home/anathea/Programmation/WIP/qmlCRUD-master"; // Pour Linux
     QString fichierQML = repertoireProjet + QString("/qml/") + nomFichierQMLsansExtension + QString(".qml");
     std::cout  << "charge le fichier QML : " << fichierQML.toLatin1().constData() << std::endl;
 
