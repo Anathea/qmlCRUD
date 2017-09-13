@@ -103,12 +103,14 @@ void WManager::sendActionToCpp(QString nomAction, QString parametre/*=""*/, int 
     {
         m_aOfTablo.push_back(parametre);
     }
-    else if (nomAction == "modifier")
+    else if (nomAction == "modifier"
+             && !m_aOfTablo.empty())
     {
         m_aOfTablo.erase(m_aOfTablo.begin() + index);
         m_aOfTablo.insert(index, parametre);
     }
-    else if (nomAction == "supprimer")
+    else if (nomAction == "supprimer"
+             && !m_aOfTablo.empty())
     {
         m_aOfTablo.erase(m_aOfTablo.begin() + index);
     }
